@@ -25,14 +25,21 @@ ZZZZZZZZZZZZZZZZZZZ    eeeeeeeeeeeeee   p::::::pppppppp    hhhhhhh     hhhhhhh  
                                        ppppppppp                                                                                                                                                                                                                                                                                                        
                                                                                                                                                                                                                                                                                                                                                         
 ]]                                                                                                                                                                                                                         
-if game.PlaceId == 3623096087 then --- 力量传奇
-loadstring(game:HttpGet("https://raw.github.com/114514541883484/Zephyr-Wave/main/Legend%20of%20Power"))()
-elseif game.PlaceId == 1252559098 then --- 铲雪模拟器
-loadstring(game:HttpGet("https://raw.github.com/114514541883484/Zephyr-Wave/main/Snow%20Shoveling%20Simulator"))()
-elseif game.PlaceId == 3101667897 then --- 极速传奇
-loadstring(game:HttpGet("https://raw.github.com/114514541883484/Zephyr-Wave/main/Speed%20Legend"))()
-elseif game.PlaceId == 3956818381 then --- 忍者传奇
-loadstring(game:HttpGet("https://raw.github.com/114514541883484/Zephyr-Wave/main/Ninja%20Legend"))()
-elseif game.PlaceId == 5256165620 then --- 火箭发射
-loadstring(game:HttpGet("https://raw.github.com/114514541883484/Zephyr-Wave/main/Rocket%20Launch%20Simulator"))()
+local nb = "https://raw.github.com/"
+local gd = "114514541883484/Zephyr-Wave/main/"
+getgenv().Games = {
+    [3623096087] = nb .. "" .. gd .. "Legend%20of%20Power", --力量传奇
+    [1252559098] = nb .. "" .. gd .. "Snow%20Shoveling%20Simulator", --铲雪模拟器
+    [3101667897] = nb .. "" .. gd .. "Speed%20Legend", --极速传奇
+    [3956818381] = nb .. "" .. gd .. "Ninja%20Legend", --忍者传奇
+    [5256165620] = nb .. "" .. gd .. "Rocket%20Launch%20Simulator", --火箭发射
+    [18680867089] = nb .. "" .. gd .. "Ultimate%20Mining%20Tycoon", --终极采矿大亨
+}
+local id = game.PlaceId
+local url = getgenv().Games[id]
+if url then
+    loadstring(game:HttpGet(url))()
+end
+if not url then
+    game.Players.LocalPlayer:Kick("不支持当前服务器!\n仅支持: 力量传奇 铲雪模拟器 极速传奇 忍者传奇 火箭发射 最终采矿大亨!!!")
 end
