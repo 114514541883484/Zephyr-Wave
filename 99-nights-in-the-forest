@@ -1,0 +1,388 @@
+local Translations = {
+ ["Foxname - 99 NITF"] = "Foxname - 99 NITF ZW汉化",
+ ["foxname.top"] = "foxname.top",
+ ["Keyless"] = "无密钥",
+ ["Info"] = "信息",
+ ["Main"] = "主页",
+ ["Bring"] = "携带",
+ ["Teleport"] = "传送",
+ ["LocalPlayer"] = "本地玩家",
+ ["Mis"] = "杂项",
+ ["Tree"] = "树木",
+ ["Settings"] = "设置",
+ ["Kill Aura"] = "击杀光环",
+ ["Kill Aura Range"] = "击杀光环范围",
+ ["Tree Aura"] = "树木光环",
+ ["Chop Aura Range"] = "砍伐光环范围",
+ ["Tree Type"] = "树木类型",
+ ["Small Tree"] = "小树",
+ ["Big Tree"] = "大树",
+ ["Dead Tree"] = "枯树",
+ ["第"] = "第",
+ ["天"] = "天",
+ ["Stun"] = "眩晕",
+ ["Auto Stun Deer"] = "自动眩晕鹿",
+ ["Auto Stun Owl"] = "自动眩晕猫头鹰",
+ ["Auto Stun Ram"] = "自动眩晕羊",
+ ["Auto Stun Cat"] = "自动眩晕猫",
+ ["Godmode"] = "无敌模式",
+ ["Auto"] = "自动",
+ ["Select Auto"] = "选择自动功能",
+ ["Auto Revive Team(bandage)"] = "自动复活队友(绷带)",
+ ["Auto Grab Children"] = "自动抓取小孩",
+ ["Choose Fuel"] = "选择燃料",
+ ["Log, Coal,"] = "木头, 煤炭,",
+ ["Auto Fuel"] = "自动添加燃料",
+ ["Auto Cook"] = "自动烹饪",
+ ["Choose Scrapper"] = "选择废料",
+ ["Chair,"] = "椅子,",
+ ["Auto Scrapper"] = "自动废料",
+ ["Auto Sacrifice"] = "自动献祭",
+ ["Select Food to Fill Hunger"] = "选择食物补充饥饿",
+ ["Hunger Threshold"] = "饥饿阈值",
+ ["Auto Eat"] = "自动进食",
+ ["Other"] = "其他",
+ ["100% Catch fish"] = "100% 钓鱼成功率",
+ ["100% Successful Taming Flute"] = "100% 驯服笛子成功率",
+ ["Instant Complete 3 Minigame Maze"] = "立即完成3个小游戏迷宫",
+ ["Chest"] = "宝箱",
+ ["Choose Chest To Teleport"] = "选择传送宝箱",
+ ["Item Chest..."] = "物品宝箱...",
+ ["None"] = "无",
+ ["Reset Chest List"] = "重置宝箱列表",
+ ["Teleport To Chest"] = "传送到宝箱",
+ ["Open All Chests"] = "打开所有宝箱",
+ ["Auto Open All Chests"] = "自动打开所有宝箱",
+ ["Drop Item To"] = "丢物品给",
+ ["Player"] = "玩家",
+ ["Select Player"] = "选择玩家",
+ ["Tp to Selected Player"] = "传送到选中玩家",
+ ["Bring Mode"] = "携带模式",
+ ["Normal"] = "普通",
+ ["NPC"] = "NPC",
+ ["Select NPC"] = "选择NPC",
+ ["Tp to NPC"] = "传送到NPC",
+ ["Refresh NPC List"] = "刷新NPC列表",
+ ["Fuel Section"] = "燃料分区",
+ ["Select Fuel"] = "选择燃料",
+ ["Bring Fuel"] = "携带燃料",
+ ["Bring selected Fuel items"] = "携带所选燃料物品",
+ ["Resources Section"] = "资源分区",
+ ["Select Resources"] = "选择资源",
+ ["Bring Resources"] = "携带资源",
+ ["Bring selected Resources items"] = "携带所选资源物品",
+ ["Metal Section"] = "金属分区",
+ ["Select Metal"] = "选择金属",
+ ["Bring Metal"] = "携带金属",
+ ["Bring selected Metal items"] = "携带所选金属物品",
+ ["Food Section"] = "食物分区",
+ ["Select Food"] = "选择食物",
+ ["Bring Food"] = "携带食物",
+ ["Bring selected Food items"] = "携带所选食物物品",
+ ["Tool Section"] = "工具分区",
+ ["Select Tool"] = "选择工具",
+ ["Bring Tool"] = "携带工具",
+ ["Bring selected Tool items"] = "携带所选工具物品",
+ ["Gun Section"] = "枪械分区",
+ ["Select Gun"] = "选择枪械",
+ ["Bring Gun"] = "携带枪械",
+ ["Bring selected Gun items"] = "携带所选枪械物品",
+ ["Other Section"] = "其他分区",
+ ["Select Other"] = "选择其他",
+ ["Bring Other"] = "携带其他",
+ ["Bring selected Other items"] = "携带所选其他物品",
+ ["Tp to Campfire"] = "传送到篝火",
+ ["Tp to Fish"] = "传送到钓鱼点",
+ ["Tp to Skills Building"] = "传送到技能建筑",
+ ["Tp to Stronghold"] = "传送到要塞",
+ ["Tp to ToolWorkshop"] = "传送到工具工坊",
+ ["Tp to Sacrifice area"] = "传送到献祭区",
+ ["Tp to Ice Temple"] = "传送到冰神殿",
+ ["Tp to Snow Clothing Shop"] = "传送到雪地服装店",
+ ["Tp to Research Facility"] = "传送到研究设施",
+ ["Tp to Research Outpost"] = "传送到研究前哨",
+ ["Set WalkSpeed"] = "设置移动速度",
+ ["Auto WalkSpeed"] = "自动移动速度",
+ ["Set JumpPower"] = "设置跳跃力",
+ ["Auto JumpPower"] = "自动跳跃力",
+ ["Set Fly Speed"] = "设置飞行速度",
+ ["Fly Toggle"] = "飞行开关",
+ ["Noclip"] = "穿墙",
+ ["Trap"] = "陷阱",
+ ["How to use"] = "使用方法",
+ ["You need a Bear Trap to kill people. Place one nearby, then select a player and toggle kill."] = "你需要一个捕熊夹来击杀玩家。在附近放置一个，然后选择玩家并开启击杀。",
+ ["You must have 1 sapling to be able to infinitely plant trees."] = "你必须拥有1个树苗才能无限种植树木。",
+ ["choose player"] = "选择玩家",
+ ["Kill player"] = "击杀玩家",
+ ["Others"] = "其他",
+ ["Hide Big Trees"] = "隐藏大树",
+ ["Bring Anvil to Workshop"] = "携带铁砧到工坊",
+ ["Ultra Clean Mode"] = "超级清理模式",
+ ["Removes textures, particles, shadows, terrain, and accessories to boost FPS."] = "移除纹理、粒子、阴影、地形和配饰以提升帧率。",
+ ["Full Bright"] = "全亮",
+ ["No Fog"] = "无雾",
+ ["Anti Void"] = "反虚空",
+ ["Instant Proximity Prompt"] = "即时交互提示",
+ ["Expand Map"] = "扩展地图",
+ ["Anti AFK"] = "防挂机",
+ ["Shape"] = "形状",
+ ["Circle"] = "圆形",
+ ["Square"] = "正方形",
+ ["Spiral"] = "螺旋",
+ ["Triangle"] = "三角形",
+ ["Heart"] = "心形",
+ ["Cross"] = "十字",
+ ["Star"] = "星形",
+ ["Pentagon"] = "五边形",
+ ["Spacing"] = "间距",
+ ["Size"] = "大小",
+ ["Height"] = "高度",
+ ["Speed"] = "速度",
+ ["Instant"] = "即时",
+ ["Fast"] = "快速",
+ ["Slow"] = "慢速",
+ ["Origin"] = "原点",
+ ["Center"] = "中心",
+ ["Last Planted"] = "最后种植",
+ ["Showcase plant"] = "展示植物",
+ ["Build Plant (Inf Tree)"] = "建造植物 (无限树)",
+ ["Consumes saplings from items to plant trees in a shape pattern"] = "消耗物品中的树苗以形状模式种植树木",
+ ["Config"] = "配置",
+ ["Config Name"] = "配置名称",
+ ["Create Config"] = "创建配置",
+ ["Select Config"] = "选择配置",
+ ["No config..."] = "无配置...",
+ ["Load Config"] = "加载配置",
+ ["Overwrite Config"] = "覆盖配置",
+ ["Delete Config"] = "删除配置",
+ ["Auto Load Config"] = "自动加载配置",
+ ["Refresh Config List"] = "刷新配置列表",
+ ["Background Select"] = "背景选择",
+ ["Select Theme"] = "选择主题",
+ ["MonokaiPro"] = "MonokaiPro",
+ ["Apply Theme"] = "应用主题",
+ ["Select Background"] = "选择背景",
+ ["No..."] = "无...",
+ ["Custom Background"] = "自定义背景",
+ ["Background ID / URL"] = "背景 ID / URL",
+ ["Minimize GUI"] = "最小化界面",
+ ["Minimize Gui Keybind"] = "最小化界面快捷键",
+ ["Collect Coins"] = "收集硬币",
+ ["Plants Seed Box"] = "植物种子箱",
+ ["Collect Ammo"] = "收集弹药",
+ ["Collect Diamond"] = "收集钻石",
+ ["Plants Tree"] = "种植树木",
+ ["Auto Day"] = "自动白天",
+ ["Log"] = "木头",
+ ["Coal"] = "煤炭",
+ ["Oil Barrel"] = "油桶",
+ ["Fuel Canister"] = "燃料罐",
+ ["Biofuel"] = "生物燃料",
+ ["Bolt"] = "螺栓",
+ ["Metal Chair"] = "金属椅",
+ ["Broken Microwave"] = "坏微波炉",
+ ["Old Car Engine"] = "旧汽车引擎",
+ ["Old Radio"] = "旧收音机",
+ ["Washing Machine"] = "洗衣机",
+ ["Cultist Gem"] = "邪教徒宝石",
+ ["Tyre"] = "轮胎",
+ ["UFO Junk"] = "UFO垃圾",
+ ["UFO Component"] = "UFO组件",
+ ["Chair"] = "椅子",
+ ["Broken Fan"] = "坏风扇",
+ ["Sheet Metal"] = "金属板",
+ ["Gem of the Forest Fragment"] = "森林宝石碎片",
+ ["Berry"] = "浆果",
+ ["Carrot"] = "胡萝卜",
+ ["Corn"] = "玉米",
+ ["Pumpkin"] = "南瓜",
+ ["Morsel"] = "肉块",
+ ["Cooked Morsel"] = "熟肉块",
+ ["Steak"] = "生牛排",
+ ["Cooked Steak"] = "熟牛排",
+ ["Cake"] = "蛋糕",
+ ["Chilli"] = "辣椒",
+ ["Stew"] = "炖菜",
+ ["Meat? Sandwich"] = "肉？三明治",
+ ["Sapling"] = "树苗",
+ ["Diamond"] = "钻石",
+ ["Cultist"] = "邪教徒",
+ ["Crossbow Cultist"] = "弩箭邪教徒",
+ ["Alien"] = "外星人",
+ ["Hologram Emitter"] = "全息发射器",
+ ["Old Flashlight"] = "旧手电筒",
+ ["Strong Flashlight"] = "强光手电筒",
+ ["Good Axe"] = "好斧头",
+ ["Strong Axe"] = "强力斧头",
+ ["Chainsaw"] = "电锯",
+ ["Good Sack"] = "好袋子",
+ ["Giant Sack"] = "巨型袋子",
+ ["Infernal Sack"] = "地狱袋",
+ ["Kunai"] = "苦无",
+ ["Morningstar"] = "晨星锤",
+ ["Wildfire"] = "野火",
+ ["Spear"] = "长矛",
+ ["Poison Spear"] = "毒长矛",
+ ["Defense Blueprint"] = "防御蓝图",
+ ["Bear Trap Blueprint"] = "捕熊夹蓝图",
+ ["Lava Mine Blueprint"] = "熔岩地雷蓝图",
+ ["MedKit"] = "医疗包",
+ ["Bandage"] = "绷带",
+ ["Revolver"] = "左轮手枪",
+ ["Revolver Ammo"] = "左轮弹药",
+ ["Rifle"] = "步枪",
+ ["Rifle Ammo"] = "步枪弹药",
+ ["Tactical Shotgun"] = "战术霰弹枪",
+ ["Raygun"] = "射线枪",
+ ["Laser Canon"] = "激光炮",
+ ["Crossbow"] = "十字弩",
+ ["Infernal Crossbow"] = "地狱十字弩",
+ ["Leather Body"] = "皮革身甲",
+ ["Iron Body"] = "铁身甲",
+ ["Alien Amour"] = "外星护甲",
+ ["Halloween Candle"] = "万圣节蜡烛",
+ ["Meteor Shard"] = "陨石碎片",
+ ["Gold Shard"] = "黄金碎片",
+ ["Raw Obsidiron Ore"] = "原始黑曜铁矿",
+ ["Scalding Obsidiron Ingot"] = "滚烫黑曜铁锭",
+ ["Obsidiron Ingot"] = "黑曜铁锭",
+ ["Anvil Front"] = "铁砧正面",
+ ["Anvil Base"] = "铁砧底座",
+ ["Anvil Back"] = "铁砧背面",
+ ["Sacrifice Totem"] = "献祭图腾",
+ ["Bunny Foot"] = "兔子脚",
+ ["Wolf Pelt"] = "狼皮",
+ ["Alpha Wolf Pelt"] = "阿尔法狼皮",
+ ["Bear Pelt"] = "熊皮",
+ ["Wolf Corpse"] = "狼尸体",
+ ["Alpha Wolf Corpse"] = "阿尔法狼尸体",
+ ["Bear Corpse"] = "熊尸体",
+ ["Polar Bear Pelt"] = "北极熊皮",
+ ["Arctic Wolf Pelt"] = "北极狼皮",
+ ["Coin Stack"] = "硬币堆",
+ ["Mammoth Tusk"] = "猛犸象牙",
+ ["Cultist King Antler"] = "邪教徒王鹿角",
+ ["Scorpion Shell"] = "蝎子壳",
+}
+local sortedTranslationKeys = {}
+for en, _ in pairs(Translations) do
+    if en ~= "" then
+        table.insert(sortedTranslationKeys, en)
+    end
+end
+table.sort(sortedTranslationKeys, function(a, b) return #a > #b end)
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    if Translations[text] then
+        return Translations[text]
+    end
+    for _, en in ipairs(sortedTranslationKeys) do
+        if text:find(en, 1, true) then
+            return text:gsub(en, Translations[en])
+        end
+    end
+    return text
+end
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        setreadonly(getrawmetatable(game), true)
+    end)
+    if not success then
+        warn("元表劫持失败:", err)
+        local translated = {}
+        local lastScan = 0
+        local scanInterval = 5 
+        local function shouldTranslateGui(gui)
+            return (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui]
+        end
+        local function translateGui(gui)
+            pcall(function()
+                local text = gui.Text
+                if text and text ~= "" and #text < 1000 then
+                    local translatedText = translateText(text)
+                    if translatedText ~= text then
+                        gui.Text = translatedText
+                        translated[gui] = true
+                    end
+                end
+            end)
+        end
+        local function scanAndTranslate()
+            local now = tick()
+            if now - lastScan < scanInterval then return end
+            lastScan = now
+            local batch = {}
+            local batchSize = 50
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if shouldTranslateGui(gui) then
+                    table.insert(batch, gui)
+                    if #batch >= batchSize then
+                        for _, g in ipairs(batch) do
+                            translateGui(g)
+                        end
+                        batch = {}
+                        task.wait()
+                    end
+                end
+            end
+            for _, g in ipairs(batch) do
+                translateGui(g)
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                batch = {}
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if shouldTranslateGui(gui) then
+                        table.insert(batch, gui)
+                        if #batch >= batchSize then
+                            for _, g in ipairs(batch) do
+                                translateGui(g)
+                            end
+                            batch = {}
+                            task.wait()
+                        end
+                    end
+                end
+                for _, g in ipairs(batch) do
+                    translateGui(g)
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.delay(0.2, function()
+                        translateGui(descendant)
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        while task.wait(scanInterval) do
+            scanAndTranslate()
+        end
+    end
+end
+task.wait(2)
+setupTranslationEngine()
+local success, err = pcall(function()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
+end)
+if not success then
+ warn("加载失败:", err)
+end
