@@ -1,4 +1,4 @@
-local nb = "https://raw.github.com/114514541883484"
+local nb = "https://raw.github.com/114514541883484/"
 local gd = "Zephyr-Wave/main/"
 getgenv().Games = {
     [1268927906] = nb .. "" .. gd .. "muscle-legends", --力量传奇
