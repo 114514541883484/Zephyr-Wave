@@ -1,0 +1,209 @@
+local Translations = {
+    ["AUTO HARVEST"] = "自动收获",
+    ["AUTO SELL"] = "自动出售",
+    ["AUTO PLANT"] = "自动种植",
+    ["AUTO BUY"] = "自动购买",
+    ["BUY SPEED"] = "购买速度",
+    ["INTERVAL"] = "间隔",
+    ["SPEED"] = "速度",
+    ["DELAY"] = "延迟",
+    ["SEEDS"] = "种子",
+    ["SETTINGS"] = "设置",
+    ["AUTOMATIC"] = "自动",
+    ["INFO"] = "信息",
+    ["ALL"] = "全部",
+    ["CHEAP"] = "廉价",
+    ["OFF"] = "关闭",
+    ["ON"] = "开启",
+    ["Rocket Pop"] = "火箭冰棒",
+    ["Venus Fly Trap"] = "捕蝇草",
+    ["Dragon's Breath"] = "龙息",
+    ["Dragon Fruit"] = "火龙果",
+    ["Glow Mushroom"] = "发光蘑菇",
+    ["Poison Apple"] = "毒苹果",
+    ["Green Bean"] = "绿豆",
+    ["Baby Cactus"] = "小仙人掌",
+    ["Poison Ivy"] = "毒藤",
+    ["Fire Fern"] = "火焰蕨",
+    ["Horned Melon"] = "刺角瓜",
+    ["Moon Bloom"] = "月之花",
+    ["Hypno Bloom"] = "催眠花",
+    ["Ghost Pepper"] = "鬼椒",
+    ["Venom Spitter"] = "毒液喷射者",
+    ["Briar Rose"] = "野玫瑰",
+    ["Romanesco"] = "罗马花椰菜",
+    ["Sunflower"] = "向日葵",
+    ["Pomegranate"] = "石榴",
+    ["Mushroom"] = "蘑菇",
+    ["Pineapple"] = "菠萝",
+    ["Coconut"] = "椰子",
+    ["Strawberry"] = "草莓",
+    ["Blueberry"] = "蓝莓",
+    ["Banana"] = "香蕉",
+    ["Tomato"] = "番茄",
+    ["Bamboo"] = "竹子",
+    ["Cactus"] = "仙人掌",
+    ["Mango"] = "芒果",
+    ["Cherry"] = "樱桃",
+    ["Acorn"] = "橡子",
+    ["Grape"] = "葡萄",
+    ["Corn"] = "玉米",
+    ["Apple"] = "苹果",
+    ["Tulip"] = "郁金香",
+    ["Carrot"] = "胡萝卜",
+    ["Gold"] = "金色",
+    ["Rainbow"] = "彩虹",
+    ["TOTAL EARNED"] = "总收益",
+    ["SEED STOCK"] = "种子库存",
+    ["NOTIFICATIONS"] = "通知",
+    ["BROODSCRIPT"] = "BROODSCRIPT ZW汉化",
+    ["Aurora"] = "极光",
+    ["Emerald"] = "翡翠",
+    ["Classic"] = "经典",
+    ["Sky"] = "天空",
+    ["Heaven"] = "天堂",
+    ["Galaxy"] = "银河",
+    ["THEME"] = "主题",
+    ["Mega"] = "巨型",
+    ["EXPNV"] = "昂贵",
+    ["NO STOCK"] = "无库存",
+    ["BUYING"] = "购买中",
+}
+local sortedTranslationKeys = {}
+for en, _ in pairs(Translations) do
+    if en ~= "" then
+        table.insert(sortedTranslationKeys, en)
+    end
+end
+table.sort(sortedTranslationKeys, function(a, b) return #a > #b end)
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    if Translations[text] then
+        return Translations[text]
+    end
+    local changed = false
+    for _, en in ipairs(sortedTranslationKeys) do
+        if text:find(en, 1, true) then
+            text = text:gsub(en, Translations[en])
+            changed = true
+        end
+    end
+    if changed then return text end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+        
+        local translated = {}
+        local lastScan = 0
+        local scanInterval = 5 
+        
+        local function shouldTranslateGui(gui)
+            return gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")
+        end
+        
+        local function translateGui(gui)
+            pcall(function()
+                local text = gui.Text
+                if text and text ~= "" and #text < 1000 then
+                    local translatedText = translateText(text)
+                    if translatedText ~= text then
+                        gui.Text = translatedText
+                    end
+                end
+            end)
+        end
+        
+        local function scanAndTranslate()
+            local now = tick()
+            if now - lastScan < scanInterval then return end
+            lastScan = now
+            
+            -- 批量处理，每帧处理一部分
+            local batch = {}
+            local batchSize = 50
+            
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if shouldTranslateGui(gui) then
+                    table.insert(batch, gui)
+                    if #batch >= batchSize then
+                        for _, g in ipairs(batch) do
+                            translateGui(g)
+                        end
+                        batch = {}
+                        task.wait()
+                    end
+                end
+            end
+            
+            -- 处理剩余的
+            for _, g in ipairs(batch) do
+                translateGui(g)
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                batch = {}
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if shouldTranslateGui(gui) then
+                        table.insert(batch, gui)
+                        if #batch >= batchSize then
+                            for _, g in ipairs(batch) do
+                                translateGui(g)
+                            end
+                            batch = {}
+                            task.wait()
+                        end
+                    end
+                end
+                for _, g in ipairs(batch) do
+                    translateGui(g)
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.delay(0.2, function()
+                        translateGui(descendant)
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        while task.wait(scanInterval) do
+            scanAndTranslate()
+        end
+    end
+end
+task.wait(2)
+setupTranslationEngine()
+local success, err = pcall(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/madundung863-a11y/BroodHub/refs/heads/main/BroodScript%20Gag2"))()
+end)
+if not success then
+    warn("加载失败:", err)
+end
