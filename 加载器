@@ -1,0 +1,33 @@
+local nb = "https://raw.github.com/114514541883484"
+local gd = "Zephyr-Wave/main/"
+getgenv().Games = {
+    [1268927906] = nb .. "" .. gd .. "muscle-legends", --力量传奇
+    [508458950] = nb .. "" .. gd .. "snow-shoveling-simulator", --铲雪模拟器
+    [1119466531] = nb .. "" .. gd .. "legends-of-speed", --极速传奇
+    [1335695570] = nb .. "" .. gd .. "ninja-legends", --忍者传奇
+    [1840897362] = nb .. "" .. gd .. "3-2-1-blast-off-simulator", --火箭发射
+    [6329693946] = nb .. "" .. gd .. "ultimate-mining-tycoon", --终极采矿大亨
+    [7395930870] = nb .. "" .. gd .. "sell-lemons", --出售柠檬汉化
+    [10199301628] = nb .. "" .. gd .. "merge-a-nuke",--合并一个核弹汉化
+    [10178802449] = nb .. "" .. gd .. "1-mine-per-click",--每点击＋一个矿井汉化
+    [10200395747] = nb .. "" .. gd .. "grow-a-garden-2",--种植花园2汉化
+    [7326934954] = nb .. "" .. gd .. "99-nights-in-the-forest",--99夜汉化
+    [10131390815] = nb .. "" .. gd .. "throw-a-coin",--扔一枚硬币
+    [7436755782] = nb .. "" .. gd .. "grow-a-garden",--种植花园
+    [1275875292] = nb .. "" .. gd .. "lifting-simulator",--提升模拟器
+    [10261367016] = nb .. "" .. gd .. "upd-speed-training",--速度训练汉化
+    [10148749921] = nb .. "" .. gd .. "animal-hospital-anomaly",--动物医院汉化
+    [4777817887] = nb .. "" .. gd .. "blade-ball",--刀刃球汉化
+    [10004244222] = nb .. "" .. gd .. "kick-a-lucky-block",--踢走一个幸运方块
+    [1408435780] = nb .. "" .. gd .. "Thick-Legends",--强壮传奇
+    [9619492068] = nb .. "" .. gd .. "Titan-Fishing",--泰坦钓鱼
+    [7498898979] = nb .. "" .. gd .. "Burgerz",--汉堡包
+    [10590654071] = nb .. "" .. gd .. "Lifting-Monster",--举重怪物
+}
+local id = game.GameId
+local url = getgenv().Games[id]
+if url then
+    loadstring(game:HttpGet(url))()
+else
+    game.Players.LocalPlayer:Kick("不支持当前服务器!\n仅支持: 力量传奇 铲雪模拟器 极速传奇 忍者传奇 火箭发射 终极采矿大亨 出售柠檬 合并一个核弹 每点击＋一个矿井! 种植花园2 99夜 扔一枚硬币 种植花园 提升模拟器 动物医院 速度训练 刀刃球 踢走一个幸运方块 强壮传奇 泰坦钓鱼 汉堡包")
+end
