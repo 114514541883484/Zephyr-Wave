@@ -1,0 +1,188 @@
+local Translations = {
+    ["Home"] = "首页",
+    ["Message Us"] = "联系我们",
+    ["Main"] = "主功能",
+    ["Tycoon"] = "大亨",
+    ["Settings"] = "设置",
+    ["by VaporScripts"] = "作者：VaporScripts",
+    ["Low Graphics Mode (FPS Boost)"] = "低画质模式（提升帧率）",
+    ["Reduces graphics quality for better performance"] = "降低画质以获得更好的性能",
+    ["Anti-AFK"] = "反挂机",
+    ["Prevents being kicked for inactivity"] = "防止因不活跃而被踢出",
+    ["Toggle UI Keybind"] = "切换UI快捷键",
+    ["Key to open/close the main script window"] = "打开/关闭主脚本窗口的按键",
+    ["Auto Buy"] = "自动购买",
+    ["Auto Buy Buttons"] = "自动购买按钮",
+    ["Automatically buys available buttons in your tycoon"] = "自动购买你大亨中可用的按钮",
+    ["Phone Offers"] = "电话优惠",
+    ["Auto Accept Phone Offer"] = "自动接受电话优惠",
+    ["Automatically accepts phone offers"] = "自动接受电话优惠",
+    ["Auto Rebirth"] = "自动重生",
+    ["Auto Rebirth (Multiplier)"] = "自动重生（倍数）",
+    ["Rebirth when pending investors reach target multiplier."] = "当待处理投资者达到目标倍数时重生。",
+    ["Multiplier Value"] = "倍数数值",
+    ["Auto Rebirth (Minimum)"] = "自动重生（最低值）",
+    ["Rebirth when potential investors reach target."] = "当潜在投资者达到目标时重生。",
+    ["Quick Select"] = "快速选择",
+    ["Choose a predefined value or 'Custom...' to enter your own."] = "选择一个预定义值或选择“自定义...”输入你自己的值。",
+    ["Custom Value"] = "自定义数值",
+    ["Force Rebirth Now"] = "立即强制重生",
+    ["Instantly sends a manual rebirth command."] = "立即发送手动重生命令。",
+    ["Advanced Automation"] = "高级自动化",
+    ["Auto Upgrade Income"] = "自动升级收入",
+    ["Upgrades all lemon businesses (Republic, X, Dash, Robotics, Stand, Trading, Depot, Labs)"] = "升级所有柠檬业务（共和国、X、Dash、机器人、摊位、交易、仓库、实验室）",
+    ["Auto Wake Income"] = "自动唤醒收入",
+    ["Collects income from all lemon businesses"] = "收集所有柠檬业务的收入",
+    ["Auto Evolve"] = "自动进化",
+    ["Automatically evolves when possible"] = "尽可能自动进化",
+    ["Auto Ascend"] = "自动飞升",
+    ["Automatically ascends when possible"] = "尽可能自动飞升",
+    ["Auto CashVine"] = "自动现金藤",
+    ["Automatically uses the CashVine in the Sewer"] = "自动使用下水道中的现金藤",
+    ["Auto CashDrop"] = "自动现金掉落",
+    ["Collects CashDrops remotely without moving the player"] = "远程收集现金掉落，无需移动玩家",
+    ["Auto Collect Fruit"] = "自动收集水果",
+    ["Automatically collects fruit from lemon trees and returns to original position"] = "自动从柠檬树收集水果并返回原始位置",
+    ["ON"] = "开",
+    ["OFF"] = "关",
+    ["Enabled"] = "已启用",
+    ["Disabled"] = "已禁用",
+    ["Notify Me!"] = "通知我！",
+    ["Search"] = "搜索",
+}
+local sortedTranslationKeys = {}
+for en, _ in pairs(Translations) do
+    if en ~= "" then
+        table.insert(sortedTranslationKeys, en)
+    end
+end
+table.sort(sortedTranslationKeys, function(a, b) return #a > #b end)
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    if Translations[text] then
+        return Translations[text]
+    end
+    for _, en in ipairs(sortedTranslationKeys) do
+        if text:find(en, 1, true) then
+            return text:gsub(en, Translations[en])
+        end
+    end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+        
+        local translated = {}
+        local lastScan = 0
+        local scanInterval = 5 
+        
+        local function shouldTranslateGui(gui)
+            return (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui]
+        end
+        
+        local function translateGui(gui)
+            pcall(function()
+                local text = gui.Text
+                if text and text ~= "" and #text < 1000 then
+                    local translatedText = translateText(text)
+                    if translatedText ~= text then
+                        gui.Text = translatedText
+                        translated[gui] = true
+                    end
+                end
+            end)
+        end
+        
+        local function scanAndTranslate()
+            local now = tick()
+            if now - lastScan < scanInterval then return end
+            lastScan = now
+            
+            -- 批量处理，每帧处理一部分
+            local batch = {}
+            local batchSize = 50
+            
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if shouldTranslateGui(gui) then
+                    table.insert(batch, gui)
+                    if #batch >= batchSize then
+                        for _, g in ipairs(batch) do
+                            translateGui(g)
+                        end
+                        batch = {}
+                        task.wait()
+                    end
+                end
+            end
+            
+            -- 处理剩余的
+            for _, g in ipairs(batch) do
+                translateGui(g)
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                batch = {}
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if shouldTranslateGui(gui) then
+                        table.insert(batch, gui)
+                        if #batch >= batchSize then
+                            for _, g in ipairs(batch) do
+                                translateGui(g)
+                            end
+                            batch = {}
+                            task.wait()
+                        end
+                    end
+                end
+                for _, g in ipairs(batch) do
+                    translateGui(g)
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.delay(0.2, function()
+                        translateGui(descendant)
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        while task.wait(scanInterval) do
+            scanAndTranslate()
+        end
+    end
+end
+task.wait(2)
+setupTranslationEngine()
+local success, err = pcall(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ProjectVapor/ProjectVapor/refs/heads/main/Scripts/VaporSellLemons"))()
+end)
+if not success then
+    warn("加载失败:", err)
+end
