@@ -1,0 +1,221 @@
+local Translations = {
+    ["Combat"] = "战斗",
+    ["Combat features"] = "战斗功能",
+    ["Auto Parry"] = "自动弹反",
+ ["Parries for you at the right moment."] = "在正确时机为你弹反。",
+ ["Auto Lobby Parry"] = "自动大厅弹反",
+ ["Parry Accuracy"] = "弹反精度",
+ ["How early you swing. Higher is sooner."] = "你挥动的提前量，越高越早。",
+ ["Parry Range"] = "弹反范围",
+    ["Auto Best Config"] = "自动最佳配置",
+    ["Curves"] = "曲线",
+    ["Curve"] = "曲线",
+    ["Cycle Curve Key"] = "循环曲线键",
+    ["No Curve While Spamming"] = "连击时无曲线",
+    ["Per-Mode Curves"] = "每模式曲线",
+    ["Detection"] = "检测",
+    ["Dribble Pre-Click"] = "运球预点击",
+    ["Slash of Fury Counter"] = "狂怒斩杀计数",
+    ["Target Lock"] = "目标锁定",
+ ["Random Target"] = "随机目标",
+ ["Switch Every"] = "每 x 秒",
+ ["Lock Curve"] = "锁定曲线",
+ ["On-screen Lock Button"] = "屏幕锁定按钮",
+    ["Auto Spam"] = "自动连击",
+    ["Manual Spam"] = "手动连击",
+    ["Ability"] = "技能",
+    ["Auto Ability"] = "自动技能",
+    ["Only Above Speed"] = "仅在速度之上",
+    ["Cooldown Protection"] = "冷却保护",
+    ["Visuals"] = "视觉效果",
+    ["Visual features"] = "视觉功能",
+    ["Player Trail"] = "玩家轨迹",
+    ["Rainbow"] = "彩虹",
+    ["Colour"] = "颜色",
+    ["Lifetime"] = "持续时间",
+    ["Width"] = "宽度",
+    ["Visualizer"] = "可视化",
+    ["Visualizer Colour"] = "可视化颜色",
+    ["Ball Trail"] = "球轨迹",
+    ["Particles"] = "粒子",
+    ["Glow"] = "发光",
+    ["Start Colour"] = "起始颜色",
+    ["End Colour"] = "结束颜色",
+    ["Ball HUD"] = "球 HUD",
+    ["Speed Colour"] = "速度颜色",
+    ["Show Distance"] = "显示距离",
+    ["Show Peak Speed"] = "显示峰值速度",
+    ["HUD Accent"] = "HUD 强调色",
+    ["FPS + Ping"] = "帧率 + 延迟",
+    ["Ability ESP"] = "技能透视",
+    ["Show Cooldown"] = "显示冷却",
+    ["Show Player Name"] = "显示玩家名称",
+    ["Max Distance (0 = off)"] = "最大距离（0=关闭）",
+    ["Each player's ability shows its name, status (READY, ACTIVE, cooldown or LOCKED) and a cooldown bar."] = "每个玩家的技能显示其名称、状态（就绪、激活、冷却或锁定）和冷却条。",
+    ["Fill Transparency"] = "填充透明度",
+    ["Box Colour"] = "框颜色",
+    ["Target Colour"] = "目标颜色",
+    ["Player ESP"] = "玩家透视",
+    ["Box"] = "框",
+    ["Box Fill"] = "框填充",
+    ["Name"] = "名称",
+    ["Distance"] = "距离",
+    ["Health Bar"] = "生命条",
+    ["Tracer"] = "追踪线",
+    ["Highlight Ball Target"] = "高亮球目标",
+    ["Enemies Only"] = "仅敌人",
+    ["Player ESP indicates"] = "玩家透视指示",
+    ["Read First"] = "请先阅读",
+    ["Everything here is high ban-risk. Use an alt to be safe."] = "此处功能具有高风险封禁。建议使用小号。",
+    ["Ban Risk"] = "封禁风险",
+    ["High ban-risk features"] = "高风险封禁功能",
+    ["Unlock All"] = "全部解锁",
+    ["Turn on, then open your in-game inventory to equip anything as if you own it."] = "开启后，在游戏中打开背包即可装备任何物品。",
+    ["Auto Load Last Equips"] = "自动加载上次装备",
+    ["Emote While Moving"] = "移动时表情",
+    ["Force Emote Animation"] = "强制表情动画",
+    ["Emote Spam"] = "表情连发",
+    ["Emote On Spawn"] = "生成时表情",
+    ["Equip Saved Loadout"] = "装备保存的配置",
+    ["Awaken Sword"] = "觉醒之剑",
+    ["Preview Finisher"] = "预览终结技",
+    ["Rise Blade Ball ~ v2.1.7 ~ https://discord.gg/risebb"] = "Rise Blade Ball ~ v2.1.7 ~ https://discord.gg/risebb",
+    ["Camera"] = "摄像机",
+    ["None"] = "无",
+}
+local sortedTranslationKeys = {}
+for en, _ in pairs(Translations) do
+    if en ~= "" then
+        table.insert(sortedTranslationKeys, en)
+    end
+end
+table.sort(sortedTranslationKeys, function(a, b) return #a > #b end)
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    if Translations[text] then
+        return Translations[text]
+    end
+    for _, en in ipairs(sortedTranslationKeys) do
+        if text:find(en, 1, true) then
+            return text:gsub(en, Translations[en])
+        end
+    end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+        
+        local translated = {}
+        local lastScan = 0
+        local scanInterval = 5 
+        
+        local function shouldTranslateGui(gui)
+            return (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui]
+        end
+        
+        local function translateGui(gui)
+            pcall(function()
+                local text = gui.Text
+                if text and text ~= "" and #text < 1000 then
+                    local translatedText = translateText(text)
+                    if translatedText ~= text then
+                        gui.Text = translatedText
+                        translated[gui] = true
+                    end
+                end
+            end)
+        end
+        
+        local function scanAndTranslate()
+            local now = tick()
+            if now - lastScan < scanInterval then return end
+            lastScan = now
+            
+            -- 批量处理，每帧处理一部分
+            local batch = {}
+            local batchSize = 50
+            
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if shouldTranslateGui(gui) then
+                    table.insert(batch, gui)
+                    if #batch >= batchSize then
+                        for _, g in ipairs(batch) do
+                            translateGui(g)
+                        end
+                        batch = {}
+                        task.wait()
+                    end
+                end
+            end
+            
+            -- 处理剩余的
+            for _, g in ipairs(batch) do
+                translateGui(g)
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                batch = {}
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if shouldTranslateGui(gui) then
+                        table.insert(batch, gui)
+                        if #batch >= batchSize then
+                            for _, g in ipairs(batch) do
+                                translateGui(g)
+                            end
+                            batch = {}
+                            task.wait()
+                        end
+                    end
+                end
+                for _, g in ipairs(batch) do
+                    translateGui(g)
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.delay(0.2, function()
+                        translateGui(descendant)
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        while task.wait(scanInterval) do
+            scanAndTranslate()
+        end
+    end
+end
+task.wait(2)
+setupTranslationEngine()
+local success, err = pcall(function()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/b7cca66d493ea7fe18629f1b27a3ecc5.lua"))()
+end)
+if not success then
+    warn("加载失败:", err)
+end
