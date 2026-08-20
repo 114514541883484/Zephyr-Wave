@@ -1,0 +1,166 @@
+local Translations = {
+    [""] = "",
+    ["Merge a Nuke | WalkyHub"] = "合并核弹 | WalkyHub",
+    ["Made By Leewalky"] = "作者：Leewalky ZW汉化",
+    ["Search"] = "搜索",
+    ["Features"] = "功能",
+    ["Main"] = "主功能",
+    ["Universal"] = "通用",
+    ["Info"] = "信息",
+    ["Credits"] = "鸣谢",
+    ["Auto Merge"] = "自动合并",
+    ["Auto Pick Up All"] = "自动拾取全部",
+    ["Auto Lock Base"] = "自动锁定基地",
+    ["Select Upgrades"] = "选择升级",
+    ["Auto Upgrade"] = "自动升级",
+    ["Movement Modifications"] = "移动修改",
+    ["WalkSpeed"] = "移动速度",
+    ["Enable WalkSpeed"] = "启用移动速度",
+    ["JumpPower"] = "跳跃力量",
+    ["Enable JumpPower"] = "启用跳跃力量",
+    ["Infinite Jump"] = "无限跳跃",
+    ["Advanced Movement"] = "高级移动",
+    ["Fly Speed"] = "飞行速度",
+    ["Fly"] = "飞行",
+    ["Noclip"] = "穿墙",
+    ["Visuals"] = "视觉效果",
+    ["Player ESP"] = "玩家透视",
+}
+local sortedTranslationKeys = {}
+for en, _ in pairs(Translations) do
+    if en ~= "" then
+        table.insert(sortedTranslationKeys, en)
+    end
+end
+table.sort(sortedTranslationKeys, function(a, b) return #a > #b end)
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    if Translations[text] then
+        return Translations[text]
+    end
+    local changed = false
+    for _, en in ipairs(sortedTranslationKeys) do
+        if text:find(en, 1, true) then
+            text = text:gsub(en, Translations[en])
+            changed = true
+        end
+    end
+    if changed then return text end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+        
+        local translated = {}
+        local lastScan = 0
+        local scanInterval = 5 
+        
+        local function shouldTranslateGui(gui)
+            return gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")
+        end
+        
+        local function translateGui(gui)
+            pcall(function()
+                local text = gui.Text
+                if text and text ~= "" and #text < 1000 then
+                    local translatedText = translateText(text)
+                    if translatedText ~= text then
+                        gui.Text = translatedText
+                    end
+                end
+            end)
+        end
+        
+        local function scanAndTranslate()
+            local now = tick()
+            if now - lastScan < scanInterval then return end
+            lastScan = now
+            
+            -- 批量处理，每帧处理一部分
+            local batch = {}
+            local batchSize = 50
+            
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if shouldTranslateGui(gui) then
+                    table.insert(batch, gui)
+                    if #batch >= batchSize then
+                        for _, g in ipairs(batch) do
+                            translateGui(g)
+                        end
+                        batch = {}
+                        task.wait()
+                    end
+                end
+            end
+            
+            -- 处理剩余的
+            for _, g in ipairs(batch) do
+                translateGui(g)
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                batch = {}
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if shouldTranslateGui(gui) then
+                        table.insert(batch, gui)
+                        if #batch >= batchSize then
+                            for _, g in ipairs(batch) do
+                                translateGui(g)
+                            end
+                            batch = {}
+                            task.wait()
+                        end
+                    end
+                end
+                for _, g in ipairs(batch) do
+                    translateGui(g)
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.delay(0.2, function()
+                        translateGui(descendant)
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        while task.wait(scanInterval) do
+            scanAndTranslate()
+        end
+    end
+end
+task.wait(2)
+setupTranslationEngine()
+local success, err = pcall(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Leewalki/WalkyHub/refs/heads/main/Merge%20a%20Nuke"))()
+end)
+if not success then
+    warn("加载失败:", err)
+end
