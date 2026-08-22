@@ -23,11 +23,15 @@ getgenv().Games = {
     [9619492068] = nb .. "" .. gd .. "Titan-Fishing",--泰坦钓鱼
     [7498898979] = nb .. "" .. gd .. "Burgerz",--汉堡包
     [10590654071] = nb .. "" .. gd .. "Lifting-Monster",--举重怪物
+    [4442272183] = nb .. "" .. gd .. "Blox-Fruits",[7449423635] = nb .. "" .. gd .. "Blox-Fruits",[994732206] = nb .. "" .. gd .. "Blox-Fruits",--Blox fruits
+    [10563114921] = nb .. "" .. gd .. "Steal-An-Egg",--偷一个蛋
+    [10440833423] = nb .. "" .. gd .. "Greedy-Growers",--贪婪的种植者
+    [10539411000] = nb .. "" .. gd .. "Clean-all-the-leaves",--清理所有树叶
 }
 local id = game.GameId
 local url = getgenv().Games[id]
 if url then
     loadstring(game:HttpGet(url))()
 else
-    game.Players.LocalPlayer:Kick("不支持当前服务器!\n仅支持: 力量传奇 铲雪模拟器 极速传奇 忍者传奇 火箭发射 终极采矿大亨 出售柠檬 合并一个核弹 每点击＋一个矿井! 种植花园2 99夜 扔一枚硬币 种植花园 提升模拟器 动物医院 速度训练 刀刃球 踢走一个幸运方块 强壮传奇 泰坦钓鱼 汉堡包")
+    game.Players.LocalPlayer:Kick("不支持当前服务器!\n仅支持: 力量传奇 铲雪模拟器 极速传奇 忍者传奇 火箭发射 终极采矿大亨 出售柠檬 合并一个核弹 每点击＋一个矿井! 种植花园2 99夜 扔一枚硬币 种植花园 提升模拟器 动物医院 速度训练 刀刃球 踢走一个幸运方块 强壮传奇 泰坦钓鱼 汉堡包 举重怪物 Blox fruits 偷一个蛋 贪婪的种植者 清理所有树叶")
 end
