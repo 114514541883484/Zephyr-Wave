@@ -1,0 +1,470 @@
+local Translations = {
+["Farm"] = "自动",
+["Auto Farm Level"] = "自动刷级",
+["Auto Travel Dressrosa"] = "自动前往德雷斯罗萨",
+["Auto Zou Quest"] = "自动佐乌任务",
+["Auto Farm Nearest"] = "自动刷最近岛屿",
+["Auto Factory Raid"] = "自动突袭工厂",
+["Auto Pirate Raid"] = "自动突袭海盗",
+["Choose Material"] = "选择材料",
+["Auto Farm Ectoplasm"] = "自动刷魂能力量",
+["Auto Done Bartilo Quest"] = "自动完成巴提洛任务",
+["Auto Done Citizen Quest"] = "自动完成市民任务",
+["Auto Training Dummy"] = "自动训练假人",
+["Auto Collect Berry"] = "自动收集恶魔果实",
+["Auto Collect Chest"] = "自动收集宝箱",
+["Select Fishing Rod: Fishing Rod"] = "选择鱼竿：鱼竿",
+["Select Bait: Basic Bait"] = "选择鱼饵：基础鱼饵",
+["Auto Fishing"] = "自动钓鱼",
+["NPC Health % Switch to Weapon"] = "NPC血量百分比切换武器",
+["NPC Aimbot (Mastery)"] = "NPC自动瞄准（刷熟练度）",
+["Auto-aimsfruit skils at the NPC during mastery farming"] = "刷熟练度时自动将果实技能瞄准NPC",
+["Double Attack (Fruit Ml + Melee M])"] = "双重攻击（果实M1 + 近战M1）",
+["Alternatesfruit Ml and melee Ml on nearest enemy"] = "对最近敌人交替使用果实M1和近战M1",
+["Choose Island: Cake"] = "选择岛屿：蛋糕岛",
+["Auto Mastery Fruits"] = "自动刷果实熟练度",
+["Auto Mastery Gun"] = "自动刷枪械熟练度",
+["Auto Mastery All Sword"] = "自动刷全剑熟练度",
+["Sword Selection:"] = "剑选择：",
+["Sword Mastery Level Lock"] = "剑熟练度等级锁定",
+["Auto Switch Sword"] = "自动切换剑",
+["Auto-equips the selected sword and stops at mastery lock level"] = "自动装备所选剑并在达到熟练度锁定等级时停止",
+["Killed"] = "击杀",
+["Bones:"] = "骨头：",
+["Auto Cake Prince"] = "自动蛋糕王子任务",
+["Auto Bones"] = "自动骨头任务",
+["Accept Quests"] = "接受任务",
+["Auto Farm Mirror"] = "自动刷镜子",
+["Auto Soul Reaper [Fully]"] = "自动死神［全自动］",
+["Auto Random Bones"] = "自动随机骨头",
+["Auto Try Luck Gravestone"] = "自动墓碑碰运气",
+["Auto Pray Gravestone"] = "自动墓碑祈祷",
+["Auto Unlock Dough Dungeon"] = "自动解锁面团副本",
+["Auto Unlock Phoenix Dungeon"] = "自动解锁凤凰副本",
+["Yeti in server!"] = "雪巨人在本服务器！",
+["No Elite Hunter"] = "无精英猎人",
+["Boss Spawn Notification"] = "Boss生成通知",
+["Notifiesyou when a world boss spawns in this server"] = "当世界Boss在本服务器生成时通知你",
+["Rare Island Spawn Notification"] = "稀有岛屿生成通知",
+["Notifiesyou when Mirage/Kitsune Island spawns"] = "当海市蜃楼岛/狐岛生成时通知你",
+["Random"] = "随机",
+["Auto Buy Buso Color: Random"] = "自动购买武装色：随机",
+["Auto Teleport Barista Cousin"] = "自动传送至咖啡师表亲",
+["Buy Buso Colors"] = "购买武装色",
+["Auto Rainbow Colors"] = "自动彩虹色",
+["Accept Rainbow Quest Faster"] = "更快接受彩虹任务",
+["Auto Farm Observation"] = "自动刷见闻色霸气",
+["Auto Observation V2"] = "自动见闻色霸气 V2",
+["Auto Upgrade Mink V3"] = "自动升级毛皮族 V3",
+["Auto Upgrade Human V3"] = "自动升级人类 V3",
+["Auto Upgrade Skypiea V3"] = "自动升级空岛 V3",
+["Auto Upgrade FishMan V3"] = "自动升级鱼人 V3",
+["Auto Valkyrie"] = "自动女武神",
+["Auto Unlocked Puzzle"] = "自动解锁谜题",
+["Config"] = "配置",
+["Select Weapon"] = "选择武器",
+["Initialize Attack [MV/Melee/Sword]"] = "初始化攻击［远程/近战/剑］",
+["[ Not Supported Gas M1]"] = "［不支持气体M1］",
+["Bring Mobs"] = "拉怪",
+["Auto Turn on Buso"] = "自动开启武装色",
+["Auto Turn on Race V3"] = "自动开启种族V3技能",
+["Auto Turn on Race V4"] = "自动开启种族V4技能",
+["Auto Turn on Spin Position"] = "自动开启旋转定位",
+["Turn on Bypass Teleport"] = "开启绕过传送",
+["Panic Mode"] = "恐慌模式",
+["turn on for safe ur health if low"] = "血量低时开启以保护你的安全",
+["AntiAFK"] = "防掉线",
+["Remove Hit VFX"] = "移除命中特效",
+["Remove Death & Respawned VFX"] = "移除死亡与重生特效",
+["Disable Notify"] = "禁用通知",
+["Stats Value"] = "属性数值",
+["Auto Melee"] = "自动近战",
+["Auto Swords"] = "自动剑",
+["Auto Gun"] = "自动枪械",
+["Auto Blox Fruits"] = "自动恶魔果实",
+["Auto Defense"] = "自动防御",
+["Fighting Style"] = "战斗风格",
+["Auto Superhuman"] = "自动超人拳",
+["Auto DeathStep"] = "自动死亡腿",
+["Auto Sharkman Karate"] = "自动鱼人拳",
+["Auto ElectricClaw"] = "自动电爪",
+["Auto DragonTalon"] = "自动龙拳",
+["Auto Godhuman"] = "自动神人拳",
+["Auto SanguineArt"] = "自动血拳",
+["Items Farm"] = "物品采集",
+["Elites Process"] = "精英NPC流程",
+["Auto Elite Quest"] = "自动精英任务",
+["Stop when got God's Chalice"] = "获得神之杯时停止",
+["Auto Tushita Sword"] = "自动获取都志他剑",
+["Auto Yama Sword"] = "自动获取阎魔",
+["Number Cursed dual katana quests"] = "诅咒双刀任务次数",
+["Auto Get CDK[ Last Quest ]"] = "自动获取诅咒双刀［最终任务］",
+["Auto Yama CDK"] = "自动用诅咒双刀刷阎魔",
+["Auto Tushita CDK"] = "自动用诅咒双刀刷都志他",
+["Buy Legendary Sword"] = "购买传奇之剑",
+["Buy True Triple Katana Sword"] = "购买真三刀流",
+["Tween to Legendary Sword Dealer"] = "传送至传奇之剑商人",
+["Auto Pole V1"] = "自动获取长戟 V1",
+["Auto Pole V2 [Beta]"] = "自动获取长戟 V2 [测试版]",
+["Auto Law Sword"] = "自动获取罗的佩刀",
+["Buy Microchip Law"] = "购买罗任务芯片",
+["Start Law Raids"] = "开始罗的突袭任务",
+["Auto Saw Sword"] = "自动获取锯刃剑",
+["Auto Saber Sword"] = "自动获取军刀",
+["Auto Cybrog"] = "自动获取赛博格",
+["Auto Usoap's Hat"] = "自动获取乌塔之帽",
+["Auto Bisento V2"] = "自动获取双刃刀 V2",
+["Auto Warden Sword"] = "自动获取典狱长之剑",
+["Auto Marine Coat"] = "自动获取海军大衣",
+["Auto Swan Coat"] = "自动获取天鹅大衣",
+["Auto Rengoku Sword"] = "自动获取炼狱刀",
+["Auto Key Rengoku"] = "自动获取炼狱钥匙",
+["Auto Dragon Trident"] = "自动获取龙三叉戟",
+["Auto Long Sword"] = "自动获取长剑",
+["Auto Black Spikey"] = "自动获取黑色尖刺饰品",
+["Auto Dark Blade V3"] = "自动获取黑刃 V3",
+["Auto Midnight Blade"] = "自动获取午夜之刃",
+["Auto Darkbeard"] = "自动获取黑胡子之剑",
+["Auto Unlocked DonSwan"] = "自动解锁唐天鹅",
+["Auto Swan Glasses"] = "自动获取天鹅眼镜",
+["Auto Bigmom"] = "自动获取大妈",
+["Auto Canvendish Sword"] = "自动获取洞穴之剑",
+["Auto Twin Hooks"] = "自动获取双钩",
+["Auto Serpent Bow"] = "自动获取蛇弓",
+["Auto Lei Accessory"] = "自动获取雷之饰品",
+["Sea Events"] = "海上事件",
+["Spy Leviathan"] = "间谍利维坦",
+["Buy Fracments with Spy"] = "用间谍购买碎片",
+["Flozen Dimension"] = "冻结领域",
+["Auto Teleport Frozen Dimension"] = "自动传送冻结领域",
+["turn on for teleport to frozen dimension and start the leviathan gate"] = "启用后自动传送到冻结领域并开启利维坦之门",
+["Auto Drive To Hydra Island"] = "自动驾驶前往九头蛇岛",
+["Choose Boats:"] = "选择船只：",
+["Buy Boats"] = "购买船只",
+["Choose Sea Level"] = "选择海域等级",
+["Auto Shark"] = "自动鲨鱼",
+["Auto Piranha"] = "自动食人鱼",
+["Auto Terror Shark"] = "自动恐怖鲨鱼",
+["Auto Fish Crew Member"] = "自动鱼人船员",
+["Auto Haunted Crew Member"] = "自动幽灵船员",
+["Auto Attack PirateGrandBrigade"] = "自动攻击海盗大队",
+["Auto Attack Fish Boat"] = "自动攻击鱼人船",
+["Auto Attack Sea Beast"] = "自动攻击海兽",
+["Auto Attack Leviathan"] = "自动攻击利维坦",
+["Kitsune Island"] = "狐岛",
+["Auto Find Kitsune Island"] = "自动寻找狐岛",
+["turn on for finding & tween kitsune island"] = "启用后自动寻找并传送至狐岛",
+["Auto Teleport to Shrine Actived"] = "自动传送至已激活神社",
+["Auto Collect Azure Ember"] = "自动收集碧蓝余烬",
+["Auto Trade Azure Ember"] = "自动交易碧蓝余烬",
+["Trade Items Azure"] = "交易碧蓝余烬物品",
+["Talk with kitsune statue"] = "与狐雕像对话",
+["Mirage + RaceV4"] = "幻影岛 + 种族V4",
+["FullMoon Status"] = "满月状态",
+["Mirage Island"] = "幻影岛",
+["Auto Find Mirage Island"] = "自动寻找幻影岛",
+["turn on for finding & tween mirage island"] = "启用后自动寻找并传送至幻影岛",
+["Auto Tween To Highest Point"] = "自动传送至最高处",
+["Auto Collect Gear"] = "自动收集装备",
+["Change Transparency can see"] = "改变透明度可透视",
+["Auto Tween Advanced"] = "高级传送模式",
+["Auto Collect Mirage Chest"] = "自动收集幻影宝箱",
+["Skull Guitar Quests"] = "骷髅吉他任务",
+["Auto Skull Guitar"] = "自动骷髅吉他",
+["Auto Farm Material Skull Guitar"] = "自动刷骷髅吉他材料",
+["Talk With Stone"] = "与石碑对话",
+["Auto Look At Moon"] = "自动望月",
+["Tiers-V4"] = "阶位-V4",
+["Auto Pull Lever"] = "自动拉动拉杆",
+["Auto Train V4"] = "自动训练V4",
+["turn on for farm tier + auto upgrade your tier level"] = "启用后自动刷阶位并提升阶位等级",
+["Teleport to Temple of Time"] = "传送至时光神殿",
+["Teleport to Ancient One"] = "传送至远古者",
+["Teleport to Ancient Clock"] = "传送至远古时钟",
+["Auto Teleport to Race Doors"] = "自动传送至种族之门",
+["Auto Complete Trial Race"] = "自动完成种族试炼",
+["Auto Kill Player After Trial"] = "试炼后自动击杀玩家",
+["turn on for kill player after the race trials"] = "启用后在种族试炼结束后自动击杀玩家",
+["Drago Dojo"] = "龙族道场",
+["Auto Dojo Trainer"] = "自动道场训练师",
+["turn on for do dojo belt quest white to black"] = "启用后自动完成道场腰带任务从白带到黑带",
+["Auto Dragon Hunter"] = "自动龙猎人",
+["turn on for farm blaze ember + auto collect blaze ember"] = "启用后自动刷烈焰余烬并收集烈焰余烬",
+["Tween To Upgrade Droco Trial"] = "传送至升级龙试炼",
+["Auto Drago (V])"] = "自动龙族 (V1)",
+["turn on for auto questl auto prehistoric event + collect dragon eggs"] = "启用后自动任务+史前事件+收集龙蛋",
+["Auto Drago (V2)"] = "自动龙族 (V2)",
+["turn on for auto kill Forest Pirate & Collect fireflower"] = "启用后自动击杀森林海盗并收集火之花",
+["Auto Drago (V3)"] = "自动龙族 (V3)",
+["turn on for sea event kill terror shark"] = "启用后海上事件击杀恐怖鲨鱼",
+["Auto Relic Drago Trial [Beta]"] = "自动龙遗迹试炼 [测试版]",
+["turn on for auto trial v4you have to CoLLECT RELIC by your self"] = "启用后自动V4试炼，需自行收集遗迹",
+["Auto Train Drago v4"] = "自动训练龙族V4",
+["turn on for training Drago race v4 + auto upgrade tier"] = "启用后训练龙族V4并自动提升阶位",
+["Tween to Drago Trials"] = "传送至龙族试炼",
+["Swap Drago Race"] = "切换龙族",
+["Upgrade Dragon Talon With Uzoth"] = "用乌祖斯升级龙拳",
+["Prehistoric"] = "史前岛",
+["Prehistoric Island"] = "史前岛",
+["Auto Find Prehistoric Island"] = "自动寻找史前岛",
+["turn on for finding & tween & start prehistoric island"] = "启用后自动寻找并传送至史前岛并启动事件",
+["Auto Patch Prehistoric Event"] = "自动修补史前事件",
+["turn on for auto patch volcano + kill aura lava golems+ auto remove lava"] = "启用后自动修补火山+击杀熔岩魔像+自动清除熔岩",
+["Auto Collect Dino Bones"] = "自动收集恐龙骨头",
+["Auto Collect Dragon Eggs"] = "自动收集龙蛋",
+["Auto Reset When Complete Volcano"] = "完成火山时自动重置",
+["When Complete Volcano not collect dino bones and else"] = "完成火山时不收集恐龙骨头等物品",
+["Auto Craft Volcanic Magnet"] = "自动制作火山磁铁",
+["turn on for auto farm material and craft volcanic magnet & stop when you have l volcanic magnet"] = "启用后自动刷材料并制作火山磁铁，拥有1个时停止",
+["Craft Volcanic Magnet"] = "制作火山磁铁",
+["Raiding Statud"] = "突袭状态",
+["Select Chip"] = "选择芯片",
+["Auto Select Dungeon Chip"] = "自动选择副本芯片",
+["Buy Dungeon Chips [Beli]"] = "购买副本芯片 [贝里]",
+["Buy Dungeon Chips [Devil Fruit]"] = "购买副本芯片 [恶魔果实]",
+["Auto Start Raid"] = "自动开始突袭",
+["Teleport To Lab"] = "传送至实验室",
+["Auto Complete Raid [Safety]"] = "自动完成突袭 [安全模式]",
+["Kill Aura"] = "击杀光环",
+["Auto Next Island"] = "自动前往下一岛",
+["Auto Awakening"] = "自动觉醒",
+["Combat PVP"] = "PVP战斗",
+["All Players"] = "所有玩家",
+["Aimbot - Skills"] = "自动瞄准 - 技能",
+["Choose Players"] = "选择玩家",
+["Teleport to choose players"] = "传送至所选玩家",
+["Spectate Choose Players"] = "旁观所选玩家",
+["Choose Aim Method"] = "选择瞄准方式",
+["Aimbot Method Skills"] = "瞄准方式：技能",
+["Aimbot Camera Closet Players"] = "摄像机锁定最近玩家",
+["Instance Mink V3[INF]"] = "毛皮族V3无限[INF]",
+["turn on for make mink v3 infinity"] = "启用后使毛皮族V3技能无限能量",
+["Instance Energy[INF]"] = "能量无限[INF]",
+["turn on for make energy infinity"] = "启用后使能量无限",
+["Instance Soru[INF]"] = "瞬步无限[INF]",
+["turn on for make soru infinity"] = "启用后使瞬步冷却无限",
+["Instance Observation Range[INF]"] = "见闻色范围无限[INF]",
+["turn on for make observation range infinity"] = "启用后使见闻色范围无限",
+["Ignore Same Teams"] = "忽略同队玩家",
+["turn on for ignore not aimbot same team"] = "启用后忽略同队玩家不进行自动瞄准",
+["Accept Allies"] = "接受盟友",
+["turn on for auto accept ally"] = "启用后自动接受盟友请求",
+["Esp Berries"] = "透视恶魔果实",
+["Esp Players"] = "透视玩家",
+["Esp Chests"] = "透视宝箱",
+["Esp Fruits"] = "透视果实",
+["Esp Island Location"] = "透视岛屿位置",
+["Travel East Blue (World 1)"] = "前往东海（第一世界）",
+["Travel Dressrosa (World 2)"] = "前往德雷斯罗萨（第二世界）",
+["Travel Zou (World 3)"] = "前往佐乌（第三世界）",
+["Select Travelling"] = "选择传送地点",
+["Auto Travel"] = "自动传送",
+["Automatic teleport to pos island"] = "自动传送至岛屿位置",
+["Select Portal"] = "选择传送门",
+["requestEntrance"] = "请求进入",
+["Select NPCs"] = "选择NPC",
+["Auto Tween to NPCs"] = "自动传送至NPC",
+["Automatic teleport to pos Npcs"] = "自动传送至NPC位置",
+["Fruits"] = "恶魔果实",
+["Select Fruit Stock"] = "选择果实股票",
+["Buy Basic Stock"] = "购买基础股票",
+["Select Mirage Fruit"] = "选择幻影果实",
+["Buy Mirage Stock"] = "购买幻影股票",
+["Auto Random Fruit"] = "自动随机果实",
+["Automatic random devil fruit"] = "自动获取随机恶魔果实",
+["Auto Drop"] = "自动丢弃",
+["Automatic drop devil fruit"] = "自动丢弃恶魔果实",
+["Auto Store Fruit"] = "自动存储果实",
+["Automatic store devil fruit"] = "自动存储恶魔果实",
+["Auto Tween to"] = "自动传送至",
+["Automatic tween to get devil fruit"] = "自动传送至获取恶魔果实",
+["Auto Collect Fruit"] = "自动收集果实",
+["Automatic bring devil fruit"] = "自动拾取恶魔果实",
+["Buy Buso"] = "购买武装色",
+["Buy Geppo"] = "购买月步",
+["Buy Soru"] = "购买瞬步",
+["Buy Ken"] = "购买拳锋",
+["Buy Black Leg"] = "购买黑足",
+["Buy Electro"] = "购买电",
+["Buy Fishman Karate"] = "购买鱼人拳",
+["Buy DragonClaw"] = "购买龙爪",
+["Buy Superhuman"] = "购买超人拳",
+["Buy Death Step"] = "购买死亡腿",
+["Buy Sharkman Karate"] = "购买鲨鱼拳",
+["Buy ElectricClaw"] = "购买电爪",
+["Buy Dragon Talon"] = "购买龙拳",
+["Buy Godhuman"] = "购买神人拳",
+["Buy SanguineArt"] = "购买血拳",
+["Buy Tomoe Ring"] = "购买巴隆戒指",
+["Buy Black Cape"] = "购买黑披风",
+["Buy Swordsman Hat"] = "购买剑士帽",
+["Buy Bizarre Rifle"] = "购买奇异步枪",
+["Buy Ghoul Mask"] = "购买僵尸面具",
+["Craft Dragonheart"] = "制作龙之心",
+["Craft Dragonstorm"] = "制作龙暴",
+["Craft DinoHood"] = "制作恐龙兜帽",
+["Craft SharkTooth"] = "制作鲨鱼牙",
+["Craft TerrorJaw"] = "制作恐怖颚",
+["Craft SharkAnchor"] = "制作鲨鱼锚",
+["Craft LeviathanCrown"] = "制作利维坦王冠",
+["Craft LeviathanShield"] = "制作利维坦盾",
+["Craft LeviathanBoat"] = "制作利维坦船",
+["Craft LegendaryScroll"] = "制作传奇卷轴",
+["Craft MythicalScroll"] = "制作神话卷轴",
+["Buy Cutlass"] = "购买弯刀",
+["Buy Katana"] = "购买刀",
+["Buy Iron Mace"] = "购买铁锤",
+["Buy Duel Katana"] = "购买决斗刀",
+["Buy Triple Katana"] = "购买三刀流",
+["Buy Pipe"] = "购买烟斗",
+["Buy Dual-Headed Blade"] = "购买双刃刀",
+["Buy Bisento"] = "购买双刃大刀",
+["Buy Soul Cane"] = "购买灵魂杖",
+["Buy Slingshot"] = "购买弹弓",
+["Buy Musket"] = "购买火枪",
+["Buy Dual Flintlock"] = "购买双燧发枪",
+["Buy Flintlock"] = "购买燧发枪",
+["Buy Refined Flintlock"] = "购买精制燧发枪",
+["Buy Cannon"] = "购买加农炮",
+["Buy Kabucha"] = "购买卡布查",
+["Buy Refund Stats"] = "购买重置属性",
+["Buy Reroll Race"] = "购买重抽种族",
+["Buy Ghoul Race (2.5k)"] = "购买僵尸族（2500金币）",
+["Buy Cyborg Race (2.5k)"] = "购买赛博格族（2500金币）",
+}
+local sortedTranslationKeys = {}
+for en, _ in pairs(Translations) do
+    if en ~= "" then
+        table.insert(sortedTranslationKeys, en)
+    end
+end
+table.sort(sortedTranslationKeys, function(a, b) return #a > #b end)
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    if Translations[text] then
+        return Translations[text]
+    end
+    for _, en in ipairs(sortedTranslationKeys) do
+        if text:find(en, 1, true) then
+            return text:gsub(en, Translations[en])
+        end
+    end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+        
+        local translated = {}
+        local lastScan = 0
+        local scanInterval = 5 
+        
+        local function shouldTranslateGui(gui)
+            return (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui]
+        end
+        
+        local function translateGui(gui)
+            pcall(function()
+                local text = gui.Text
+                if text and text ~= "" and #text < 1000 then
+                    local translatedText = translateText(text)
+                    if translatedText ~= text then
+                        gui.Text = translatedText
+                        translated[gui] = true
+                    end
+                end
+            end)
+        end
+        
+        local function scanAndTranslate()
+            local now = tick()
+            if now - lastScan < scanInterval then return end
+            lastScan = now
+            
+            -- 批量处理，每帧处理一部分
+            local batch = {}
+            local batchSize = 50
+            
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if shouldTranslateGui(gui) then
+                    table.insert(batch, gui)
+                    if #batch >= batchSize then
+                        for _, g in ipairs(batch) do
+                            translateGui(g)
+                        end
+                        batch = {}
+                        task.wait()
+                    end
+                end
+            end
+            
+            -- 处理剩余的
+            for _, g in ipairs(batch) do
+                translateGui(g)
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                batch = {}
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if shouldTranslateGui(gui) then
+                        table.insert(batch, gui)
+                        if #batch >= batchSize then
+                            for _, g in ipairs(batch) do
+                                translateGui(g)
+                            end
+                            batch = {}
+                            task.wait()
+                        end
+                    end
+                end
+                for _, g in ipairs(batch) do
+                    translateGui(g)
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.delay(0.2, function()
+                        translateGui(descendant)
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        while task.wait(scanInterval) do
+            scanAndTranslate()
+        end
+    end
+end
+task.wait(2)
+setupTranslationEngine()
+local success, err = pcall(function()
+loadstring(game:HttpGet("https://pastefy.app/yuFWjBNd/raw"))()
+end)
+if not success then
+    warn("加载失败:", err)
+end
