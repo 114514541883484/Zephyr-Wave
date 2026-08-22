@@ -1,0 +1,127 @@
+local Translations = {
+["Server Hop"] = "服务器跳转",
+["Auto Server Hop"] = "自动服务器跳转",
+["Hop When"] = "跳转时机",
+["No Matching Eggs"] = "无匹配蛋",
+["Steal Eggs"] = "偷蛋",
+["Threshold (s / min / steals)"] = "阈值（秒/分钟/偷取次数）",
+["Areas"] = "区域",
+["Hop Now"] = "立即跳转",
+["Egg Handling"] = "蛋的处理",
+["Mutations"] = "变异",
+["Rarities"] = "稀有度",
+["Target Priority"] = "目标优先级",
+["Rarest"] = "最稀有",
+["Auto Steal Selected"] = "自动偷取选定",
+["Auto Place Selected"] = "自动放置选定",
+["Auto Steal All"] = "自动偷取全部",
+["Auto Place All"] = "自动放置全部",
+["Steal Big Eggs"] = "偷取大蛋",
+["Auto Hatch Ready"] = "自动孵化就绪",
+["Big Egg Minimum Size"] = "大蛋最小尺寸",
+["Auto Drop Held Egg"] = "自动丢弃手中蛋",
+["Auto Return to Base"] = "自动返回基地",
+["Fuse Now"] = "立即融合",
+["Fuse Interval"] = "融合间隔",
+["Sell Interval"] = "出售间隔",
+["Keep Per Pet Type"] = "每种宠物保留数量",
+["Sell Rarities"] = "出售稀有度",
+["Auto Sell Eggs"] = "自动出售蛋",
+["Never Fuse Equipped"] = "永不融合已装备",
+["Never Fuse Mutated"] = "永不融合已变异",
+["Highest Rarity"] = "最高稀有度",
+["Pick Group By"] = "按组选择",
+["Maximum Scale to Sell"] = "最大出售规模",
+["Never Sell Equipped"] = "永不出售已装备",
+["Fuse Mutations"] = "融合变异",
+["Never Sell Mutated"] = "永不出售已变异",
+["Fuse Rarities"] = "融合稀有度",
+["Auto Fuse Pets[Beta]"] = "自动融合宠物[测试版]",
+["Sell Mutations"] = "出售变异",
+["Auto Fuse"] = "自动融合",
+["Auto Equip Best Pets"] = "自动装备最佳宠物",
+["Auto Sell Pets"] = "自动出售宠物",
+["Claim Offline Earnings"] = "领取离线收益",
+["Earnings"] = "收益",
+["Auto Treadmill Training"] = "自动跑步机训练",
+["Training"] = "训练",
+["Auto Claim Group Reward"] = "自动领取团队奖励",
+["Auto Claim Index"] = "自动领取指数",
+["Index"] = "指数",
+["Auto Equip Best Gear"] = "自动装备最佳装备",
+["Upgrades"] = "升级",
+["Auto Buy Upgrades"] = "自动购买升级",
+["Auto Equip Best Trail"] = "自动装备最佳足迹",
+["Trails"] = "足迹",
+["Auto Buy Trail"] = "自动购买足迹",
+["ESP"] = "ESP透视",
+["World Egg ESP"] = "世界蛋透视",
+["Carried and Dropped Egg ESP"] = "携带与掉落蛋透视",
+["Guard ESP"] = "守卫透视",
+["Pet ESP"] = "宠物透视",
+["Player ESP"] = "玩家透视",
+["Machine ESP"] = "机器透视",
+["Plot ESP"] = "地块透视",
+["Render Distance"] = "渲染距离",
+["NoClip"] = "穿墙",
+["Infinite Jump"] = "无限跳跃",
+["Jump Power"] = "跳跃力度",
+["Jump Power Override"] = "跳跃力度覆盖",
+["Teleport to Waypoint"] = "传送到路点",
+["Base"] = "基地",
+["Waypoint"] = "路点",
+["Walk Speed"] = "行走速度",
+["Walk Speed Override"] = "行走速度覆盖",
+["Waypoint Teleport"] = "路点传送",
+["Movement"] = "移动",
+["Fly Speed"] = "飞行速度",
+["Fly"] = "飞行",
+["Task Order"] = "任务顺序",
+["Priority 1"] = "优先级1",
+["Auto Steal Egg"] = "自动偷蛋",
+["Priority 2"] = "优先级2",
+["Auto Place Egg"] = "自动放置蛋",
+["Priority 3"] = "优先级3",
+["Auto Hatch"] = "自动孵化",
+["Priority 4"] = "优先级4",
+["Auto Treadmill"] = "自动跑步机",
+["Ouroboros"] = "Ouroboros ZW汉化",
+["Auto Complete Reveal"] = "自动完成揭示",
+["Maximum Scale to Fuse"] = "最大融合规模",
+}
+local sortedTranslationKeys = {}for en, _ in pairs(Translations) do
+if en ~= "" then table.insert(sortedTranslationKeys, en)end end
+table.sort(sortedTranslationKeys, function(a, b) return #a > #b end)local function translateText(text)
+if not text or type(text) ~= "string" then return text end if Translations[text] then
+return Translations[text]end for _, en in ipairs(sortedTranslationKeys) do
+if text:find(en, 1, true) then return text:gsub(en, Translations[en])end end return text end
+local function setupTranslationEngine()local success, err = pcall(function()local oldIndex = getrawmetatable(game).__newindex
+setreadonly(getrawmetatable(game), false)getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then v = translateText(tostring(v))end
+return oldIndex(t, k, v)end)setreadonly(getrawmetatable(game), true)end)if not success then warn("元表劫持失败:", err)   
+local translated = {}local lastScan = 0 local scanInterval = 5 local function shouldTranslateGui(gui)
+return (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui]end 
+local function translateGui(gui)pcall(function() local text = gui.Text
+if text and text ~= "" and #text < 1000 then local translatedText = translateText(text)
+if translatedText ~= text then gui.Text = translatedText translated[gui] = true end end end)end   
+local function scanAndTranslate()local now = tick()
+if now - lastScan < scanInterval then return end lastScan = now
+local batch = {}local batchSize = 50  for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+if shouldTranslateGui(gui) then table.insert(batch, gui)
+if #batch >= batchSize then
+for _, g in ipairs(batch) do translateGui(g)end batch = {} task.wait()end end end
+for _, g in ipairs(batch) do translateGui(g)end
+local player = game:GetService("Players").LocalPlayer if player and player:FindFirstChild("PlayerGui") then batch = {}
+for _, gui in ipairs(player.PlayerGui:GetDescendants()) do if shouldTranslateGui(gui) then table.insert(batch, gui)
+if #batch >= batchSize then for _, g in ipairs(batch) do translateGui(g)
+end batch = {}task.wait()end end end
+for _, g in ipairs(batch) do translateGui(g)end end end   
+local function setupDescendantListener(parent)parent.DescendantAdded:Connect(function(descendant)
+if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+task.delay(0.2, function()translateGui(descendant)end)end end)end     
+pcall(setupDescendantListener, game:GetService("CoreGui"))local player = game:GetService("Players").LocalPlayer
+if player and player:FindFirstChild("PlayerGui") then pcall(setupDescendantListener, player.PlayerGui)end
+while task.wait(scanInterval) do scanAndTranslate()end end end task.wait(2)setupTranslationEngine()
+local success, err = pcall(function()
+loadstring(game:HttpGet("https://pastefy.app/O5F78IQ0/raw"))()
+end)if not success then warn("加载失败:", err) end
