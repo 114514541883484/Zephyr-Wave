@@ -1,0 +1,152 @@
+local Translations = {
+["Tracer Color"] = "曳光弹颜色",
+["Aim Part"] = "瞄准部位",
+["Bullet Tracer"] = "子弹曳光弹",
+["Random Parts"] = "随机部位",
+["Fast Shoot"] = "快速射击",
+["Aim Settings"] = "瞄准设置",
+["Auto Reload"] = "自动换弹",
+["Gun Mods"] = "枪械改装",
+["Miss Spread"] = "偏移扩散",
+["Transparency"] = "透明度",
+["Hit Chance"] = "命中率",
+["Hitbox Size"] = "碰撞体积大小",
+["Max Distance"] = "最大距离",
+["Team Check"] = "队伍检测",
+["Enable Hitbox Expander"] = "启用碰撞体积扩展",
+["Target Tab"] = "目标标签",
+["Force Field Check"] = "力场检测",
+["Hitbox Expander"] = "碰撞体积扩展器",
+["Wall Check"] = "穿墙检测",
+["Inm"] = "囚犯",
+["Guards"] = "狱警",
+["FOV Size"] = "视野大小",
+["Team Target"] = "队伍目标",
+["FOV Color"] = "视野颜色",
+["Static FOV"] = "静态视野",
+["Auto Shoot"] = "自动射击",
+["Show FOV"] = "显示视野",
+["Enable Silent Aim"] = "启用静默瞄准",
+["FOV"] = "视野范围",
+["Silent Aim"] = "静默瞄准",
+["Whitelisted Players"] = "白名单玩家",
+["Texture ID"] = "材质ID",
+["Taser Always Hit"] = "电击枪必中",
+["Shield Breaker"] = "破盾",
+["Reflectance"] = "反射率",
+["Prioritize Closest"] = "优先最近目标",
+["Color"] = "颜色",
+["ForceField"] = "力场",
+["Material"] = "材质",
+["Weapon Chams"] = "武器透视",
+["Auto Shoot Delay"] = "自动射击延迟",
+["Duration"] = "持续时间",
+["Aimbot and combat features"] = "自动瞄准与战斗功能",
+["Combat"] = "战斗",
+["Outline Transparency"] = "描边透明度",
+["Fill Transparency"] = "填充透明度",
+["Occluded Color"] = "遮挡颜色",
+["Visible Color"] = "可见颜色",
+["Enable Chams"] = "启用透视",
+["Chams"] = "透视",
+["Outline"] = "描边",
+["Health bar"] = "血条",
+["Weapon"] = "武器",
+["Distance"] = "距离",
+["Bar Width"] = "血条宽度",
+["corner"] = "拐角",
+["Box Mode"] = "框选模式",
+["Box"] = "框",
+["Enable ESP"] = "启用ESP透视",
+["Inmates"] = "囚犯",
+["Criminals"] = "罪犯",
+["Team Chams"] = "队伍透视",
+["Anti-Taser"] = "防电击枪",
+["Hit Logs"] = "命中日志",
+["Others"] = "其他",
+["Logs"] = "日志",
+["None"] = "无",
+["Skybox"] = "天空盒",
+["Field of View"] = "视野范围",
+["FOV Changer"] = "视野调节器",
+["ClockTime"] = "时间",
+["Speed Value"] = "速度值",
+["FogStart"] = "雾气起始",
+["Walk Speed"] = "行走速度",
+["FogEnd"] = "雾气结束",
+["Spin Speed"] = "旋转速度",
+["FogColor"] = "雾气颜色",
+["Clockwise"] = "顺时针",
+["GlobalShadows"] = "全局阴影",
+["Direction"] = "方向",
+["ColorShift Top"] = "色彩偏移顶部",
+["Spinbot"] = "旋转机器人",
+["ColorShift Bottom"] = "色彩偏移底部",
+["Infinite Jump"] = "无限跳跃",
+["Noclip"] = "穿墙",
+["Brightness"] = "亮度",
+["OutdoorAmbient"] = "室外环境光",
+["Fly Speed"] = "飞行速度",
+["Ambient"] = "环境光",
+["Fly (use at own risk)"] = "飞行（风险自负）",
+["Lighting Changer"] = "光照调节器",
+["Invisible"] = "隐身",
+["Environment"] = "环境",
+["Criminals Spawn"] = "罪犯出生点",
+["Rust"] = "锈蚀区",
+["Police Room"] = "警备室",
+["Sound"] = "音效",
+["Guardtower"] = "瞭望塔",
+["Kill Sound"] = "击杀音效",
+["Inside Prison"] = "监狱内",
+["Test Sound"] = "测试音效",
+["Secret Room"] = "密室",
+["Entrance"] = "入口",
+["Yard"] = "院子",
+["Cafeteria"] = "食堂",
+["Teleportation"] = "传送",
+["Hit Sound"] = "命中音效",
+["Kill Logs"] = "击杀日志",
+["Car Flip"] = "车辆翻转",
+["Car Speed Value"] = "车辆速度值",
+["Car Speed"] = "车辆速度",
+["Car Fly Speed"] = "车辆飞行速度",
+["Car Fly"] = "车辆飞行",
+["Car Settings"] = "车辆设置",
+}
+local sortedTranslationKeys = {}for en, _ in pairs(Translations) do
+if en ~= "" then table.insert(sortedTranslationKeys, en)end end
+table.sort(sortedTranslationKeys, function(a, b) return #a > #b end)local function translateText(text)
+if not text or type(text) ~= "string" then return text end if Translations[text] then
+return Translations[text]end for _, en in ipairs(sortedTranslationKeys) do
+if text:find(en, 1, true) then return text:gsub(en, Translations[en])end end return text end
+local function setupTranslationEngine()local success, err = pcall(function()local oldIndex = getrawmetatable(game).__newindex
+setreadonly(getrawmetatable(game), false)getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then v = translateText(tostring(v))end
+return oldIndex(t, k, v)end)setreadonly(getrawmetatable(game), true)end)if not success then warn("元表劫持失败:", err)   
+local translated = {}local lastScan = 0 local scanInterval = 5 local function shouldTranslateGui(gui)
+return (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui]end 
+local function translateGui(gui)pcall(function() local text = gui.Text
+if text and text ~= "" and #text < 1000 then local translatedText = translateText(text)
+if translatedText ~= text then gui.Text = translatedText translated[gui] = true end end end)end   
+local function scanAndTranslate()local now = tick()
+if now - lastScan < scanInterval then return end lastScan = now
+local batch = {}local batchSize = 50  for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+if shouldTranslateGui(gui) then table.insert(batch, gui)
+if #batch >= batchSize then
+for _, g in ipairs(batch) do translateGui(g)end batch = {} task.wait()end end end
+for _, g in ipairs(batch) do translateGui(g)end
+local player = game:GetService("Players").LocalPlayer if player and player:FindFirstChild("PlayerGui") then batch = {}
+for _, gui in ipairs(player.PlayerGui:GetDescendants()) do if shouldTranslateGui(gui) then table.insert(batch, gui)
+if #batch >= batchSize then for _, g in ipairs(batch) do translateGui(g)
+end batch = {}task.wait()end end end
+for _, g in ipairs(batch) do translateGui(g)end end end   
+local function setupDescendantListener(parent)parent.DescendantAdded:Connect(function(descendant)
+if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+task.delay(0.2, function()translateGui(descendant)end)end end)end     
+pcall(setupDescendantListener, game:GetService("CoreGui"))local player = game:GetService("Players").LocalPlayer
+if player and player:FindFirstChild("PlayerGui") then pcall(setupDescendantListener, player.PlayerGui)end
+while task.wait(scanInterval) do scanAndTranslate()end end end task.wait(2)setupTranslationEngine()
+local success, err = pcall(function()
+loadstring(game:HttpGet("https://pastefy.app/uXy0NglH/raw"))()
+end)if not success then warn("加载失败:", err) end
