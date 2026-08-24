@@ -1,0 +1,159 @@
+local Translations = {
+["Survivor"] = "幸存者",
+["Feature Invisible"] = "隐身功能",
+["Invisible"] = "隐身",
+["Speed Boost"] = "加速",
+["Hotkey Invisible (PC)"] = "隐身快捷键(PC)",
+["Auto Parry [BETA]"] = "自动格挡[测试版]",
+["Enable Auto Parry"] = "启用自动格挡",
+["Parry Range (studs)"] = "格挡范围(单位)",
+["Show Visual Range (Ring)"] = "显示可视范围(环形)",
+["Ring color"] = "环形颜色",
+["Red"] = "红色",
+["No Fall Damage"] = "无坠落伤害",
+["Flee Killer (Auto TP Menjauh)"] = "远离杀手(自动传送)",
+["Flee Distance (studs)"] = "逃离距离(单位)",
+["God Mode"] = "无敌模式",
+["Auto Crouch Abysswalker Slash"] = "自动蹲下躲深渊斩",
+["Auto Generator Rush"] = "自动冲发电机",
+["Auto Gen Rush"] = "自动冲发电机",
+["Killer Escape Distance"] = "杀手逃离距离",
+["Bypass Generator [OP]"] = "绕过发电机[OP]",
+["Enable Bypass Generator"] = "启用绕过发电机",
+["Auto Skillcheck Perfect"] = "自动完美技能检查",
+["Skillcheck Mode"] = "技能检查模式",
+["Generator Info"] = "发电机信息",
+["Show Generator Progression"] = "显示发电机进度",
+["Bypass Gate"] = "绕过大门",
+["Beat Game (Auto Escape)"] = "通关(自动逃生)",
+["Killer"] = "杀手",
+["Auto Hook"] = "自动绑钩",
+["Enable Auto Hook"] = "启用自动绑钩",
+["Kill All Instant"] = "瞬间击杀全部",
+["Kill All (Risk Ban)"] = "击杀全部(有封禁风险)",
+["Auto Attack"] = "自动攻击",
+["Auto Attack (No Animation)"] = "自动攻击(无动画)",
+["Attack Range (studs)"] = "攻击范围(单位)",
+["Killer Utility"] = "杀手工具",
+["No Flashlight (Anti Blind)"] = "无手电筒(防致盲)",
+["Drop All Pallet [OP]"] = "全部放板[OP]",
+["Drop All Pallets Instantly"] = "瞬间全部放板",
+["Hotkey PC"] = "快捷键PC",
+["No Cooldown SKill"] = "技能无冷却",
+["No Cooldown (M2 & Q) [Hidden]"] = "无冷却(M2和Q)[隐藏者]",
+["No Cooldown (Q &M2 [Myers]"] = "无冷却(Q和M2)[迈尔斯]",
+["No Cooldown (Power) [The Masked]"] = "无冷却(能力)[面具杀手]",
+["Enable Auto Farm"] = "启用自动刷",
+["Auto Farm [BETA]"] = "自动刷[测试版]",
+["Auto Farm Screws & EXP"] = "自动刷螺丝和经验",
+["Anti AFK"] = "防离线",
+["Stay Active (Anti AFK)"] = "保持活跃(防离线)",
+["ESP"] = "透视",
+["Enable ESP"] = "启用透视",
+["ESP Role"] = "透视角色",
+["ESP Survivor"] = "透视幸存者",
+["ESP Killer"] = "透视杀手",
+["ESP Zombie Dummy"] = "透视僵尸假人",
+["ESP Object"] = "透视物品",
+["ESP Generator"] = "透视发电机",
+["ESP Gate"] = "透视大门",
+["ESP Hook"] = "透视钩子",
+["ESP Pallet"] = "透视木板",
+["ESP Settings"] = "透视设置",
+["Show Name"] = "显示名称",
+["Show Distance"] = "显示距离",
+["Show Health"] = "显示血量",
+["Custom ESP Colors"] = "自定义透视颜色",
+["Survivor color"] = "幸存者颜色",
+["Killer Color"] = "杀手颜色",
+["Zombie Dummy Color"] = "僵尸假人颜色",
+["Generator color"] = "发电机颜色",
+["Gate Color"] = "大门颜色",
+["Hook color"] = "钩子颜色",
+["Pallet Color"] = "木板颜色",
+["Aimbot"] = "自动瞄准",
+["Twist of Fate Aimbot"] = "命运纺锤自动瞄准",
+["Enable Aimbot"] = "启用自动瞄准",
+["Hold RMB to Aim"] = "按住右键瞄准",
+["Show Fov circle"] = "显示视野圆圈",
+["Crosshair style"] = "准星样式",
+["Show Aim Line (3D)"] = "显示瞄准线(3D)",
+["Prediction"] = "预判",
+["FOV Radius (pixels)"] = "视野半径(像素)",
+["Sm ooth (0.05 -1.0)"] = "平滑度(0.05-1.0)",
+["Smooth (0.05 -1.0)"] = "平滑度(0.05-1.0)",
+["Bullet Speed (stud/s)"] = "子弹速度(单位/秒)",
+["Silent Aim"] = "静默瞄准",
+["Target Mode"] = "目标模式",
+["Hotkey PC (Target Killer)"] = "快捷键PC(瞄准杀手)",
+["Hotkey PC (Target Survivor)"] = "快捷键PC(瞄准幸存者)",
+["Hotkey PC (Target Zombie)"] = "快捷键PC(瞄准僵尸)",
+["Enable silent Aim"] = "启用静默瞄准",
+["Enable Laser Effect"] = "启用激光效果",
+["Fire Cooldown (detik)"] = "射击冷却(秒)",
+["Spear Aimbct (Veil [BETA])"] = "长矛自动瞄准(面纱[测试版])",
+["Enable Spear Laser"] = "启用长矛激光",
+["Enable silent Spear"] = "启用静默长矛",
+["Range (studs)"] = "范围(单位)",
+["Settings"] = "设置",
+["Player Utility"] = "玩家工具",
+["Speed value"] = "速度值",
+["Enable Run Speed"] = "启用奔跑速度",
+["No Clip"] = "穿墙",
+["Moonwalk (Body Follows Cam era)"] = "太空步(身体跟随相机)",
+["Unlimited Zoom"] = "无限缩放",
+["Visuals"] = "视觉",
+["Full Bright"] = "全局照明",
+["NoFog"] = "无雾",
+["Performance"] = "性能",
+["Disable Particles"] = "禁用粒子效果",
+["Lower Graphics"] = "降低画质",
+["Disable Shadows"] = "禁用阴影",
+["FPS Unlocker"] = "解除帧数限制",
+["FPS Cap value"] = "帧数上限值",
+["FPS Counter"] = "帧数显示",
+["Server"] = "服务器",
+["Rejoin Server"] = "重新加入服务器",
+["Serverhop (Find Small Server)"] = "跳服(寻找小服务器)",
+["Survival Utility"] = "幸存者工具",
+["No Cooldown (Q &M2) [Myers]"] = "无冷却(Q和M2)[迈尔斯]",
+["Generator Color"] = "发电机颜色",
+["Hook Color"] = "钩子颜色",
+["FPS Cap Value"] = "帧数上限值",
+}
+local sortedTranslationKeys = {}for en, _ in pairs(Translations) do
+if en ~= "" then table.insert(sortedTranslationKeys, en)end end
+table.sort(sortedTranslationKeys, function(a, b) return #a > #b end)local function translateText(text)
+if not text or type(text) ~= "string" then return text end if Translations[text] then
+return Translations[text]end for _, en in ipairs(sortedTranslationKeys) do
+if text:find(en, 1, true) then return text:gsub(en, Translations[en])end end return text end
+local function setupTranslationEngine()local success, err = pcall(function()local oldIndex = getrawmetatable(game).__newindex
+setreadonly(getrawmetatable(game), false)getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then v = translateText(tostring(v))end
+return oldIndex(t, k, v)end)setreadonly(getrawmetatable(game), true)end)if not success then warn("元表劫持失败:", err)   
+local translated = {}local lastScan = 0 local scanInterval = 5 local function shouldTranslateGui(gui)
+return (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui]end 
+local function translateGui(gui)pcall(function() local text = gui.Text
+if text and text ~= "" and #text < 1000 then local translatedText = translateText(text)
+if translatedText ~= text then gui.Text = translatedText translated[gui] = true end end end)end   
+local function scanAndTranslate()local now = tick()
+if now - lastScan < scanInterval then return end lastScan = now
+local batch = {}local batchSize = 50  for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+if shouldTranslateGui(gui) then table.insert(batch, gui)
+if #batch >= batchSize then
+for _, g in ipairs(batch) do translateGui(g)end batch = {} task.wait()end end end
+for _, g in ipairs(batch) do translateGui(g)end
+local player = game:GetService("Players").LocalPlayer if player and player:FindFirstChild("PlayerGui") then batch = {}
+for _, gui in ipairs(player.PlayerGui:GetDescendants()) do if shouldTranslateGui(gui) then table.insert(batch, gui)
+if #batch >= batchSize then for _, g in ipairs(batch) do translateGui(g)
+end batch = {}task.wait()end end end
+for _, g in ipairs(batch) do translateGui(g)end end end   
+local function setupDescendantListener(parent)parent.DescendantAdded:Connect(function(descendant)
+if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+task.delay(0.2, function()translateGui(descendant)end)end end)end     
+pcall(setupDescendantListener, game:GetService("CoreGui"))local player = game:GetService("Players").LocalPlayer
+if player and player:FindFirstChild("PlayerGui") then pcall(setupDescendantListener, player.PlayerGui)end
+while task.wait(scanInterval) do scanAndTranslate()end end end task.wait(2)setupTranslationEngine()
+local success, err = pcall(function()
+loadstring(game:HttpGet("https://pastefy.app/nzULgBCe/raw"))()
+end)if not success then warn("加载失败:", err) end
