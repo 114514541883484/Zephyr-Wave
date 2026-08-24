@@ -123,5 +123,5 @@ pcall(setupDescendantListener, game:GetService("CoreGui"))local player = game:Ge
 if player and player:FindFirstChild("PlayerGui") then pcall(setupDescendantListener, player.PlayerGui)end
 while task.wait(scanInterval) do scanAndTranslate()end end end task.wait(2)setupTranslationEngine()
 local success, err = pcall(function()
-loadstring(game:HttpGet("https://pastefy.app/O5F78IQ0/raw"))()
+loadstring(game:HttpGet("https://pastefy.app/foGoFipP/raw"))()
 end)if not success then warn("加载失败:", err) end
